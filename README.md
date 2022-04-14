@@ -12,6 +12,7 @@ Aplicación desarrollada en django con integración a pasarela de pago para gest
 
 #### Sitios de interés
 
+- [multiples usuarios en django y vistas](https://simpleisbetterthancomplex.com/tutorial/2018/01/18/how-to-implement-multiple-user-types-with-django.html)
 
 - [modelos y sqlite profe moises sepulveda](https://www.youtube.com/watch?v=P7pw--AUmlI)
 
