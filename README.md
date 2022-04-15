@@ -37,7 +37,12 @@ Crear super usuario
 py manage.py createsuperuser
 ```
 
-Aspecto formulario
+## Instalaciones y plugins
+Bootstrap4
+```
+pip install django-bootstrap4
+```
+Crispy Forms
 ```
 pip install django-crispy-forms
 ```
