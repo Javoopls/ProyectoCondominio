@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from core.decorators import residente_only
 
 # Create your views here.
+
 def home(request):
     return render(request, 'core/home.html')
 
@@ -17,3 +18,4 @@ def login_success(request):
 @residente_only
 def user(request):
     return render(request, 'core/user.html')
+
