@@ -1,0 +1,79 @@
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% bootstrap_css %}
+    {% load static %}
+    <link type="text/css" rel="stylesheet" href="{% static 'core/css/estilos.css' %}">
+    {% block importaciones %}
+    {% endblock %}
+
+    {% block docname%}
+    <title>BASE</title>
+    {% endblock%}
+</head>
+<body class="bg" onload="mostrarSaludo()">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <header>
+                    <ul class="nav justify-content-end">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link active" aria-current="page" href="#">Somos</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">Contacto</a>
+                        </li>
+                        {% if user.is_authenticated %}
+        
+                        <!-- {% if not user.is_staff %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Reservar</a>
+                        </li>
+                        {% endif %} -->
+        
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'user' %}">@{{ user.username }}</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
+                        </li>
+        
+                        {% endif %}
+                    </ul>
+                </header>
+            </div>
+        </div>
+    </div>
+    
+    {% block contenido %}
+    {% endblock %}
+
+    <div class="row">
+        <br><br><br><br>
+    </div>
+      
+
+    <div class="foot">
+        <footer>
+            <p class="pie">Made with <span style="color: #ff0000;">&#10084;</span></i></p>
+        </footer>
+    </div>
+
+    {% block js %}
+    {% endblock %}
+
+    {% bootstrap_javascript jquery='full' %}
+</body>
+</html>
