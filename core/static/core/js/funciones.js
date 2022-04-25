@@ -12,3 +12,4 @@ function mostrarSaludo(){
     }
     document.getElementById('saludo').innerHTML = texto;
 }
+

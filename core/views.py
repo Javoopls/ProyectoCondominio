@@ -17,3 +17,12 @@ def login_success(request):
 @residente_only
 def user(request):
     return render(request, 'core/user.html')
+
+
+# Reservas
+def espacios(request):
+    return render(request, 'reserva/espacio.html')
+def disponibilidad(request):
+    # en argumento, pedir id del espacio
+    # mostrar en url el nombre del espacio
+    return render(request, 'reserva/disponibilidad.html')
