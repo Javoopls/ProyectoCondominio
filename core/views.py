@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from core.decorators import residente_only
 
 # Create your views here.
+
 def home(request):
     return render(request, 'core/home.html')
 
@@ -26,3 +27,4 @@ def disponibilidad(request):
     # en argumento, pedir id del espacio
     # mostrar en url el nombre del espacio
     return render(request, 'reserva/disponibilidad.html')
+
