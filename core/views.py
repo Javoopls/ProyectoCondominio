@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
 
 from core.decorators import residente_only
@@ -30,8 +30,13 @@ def espacios(request):
     }
     return render(request, 'reserva/espacio.html', datos)
 
-# def disponibilidad(request):
-#     # en argumento, pedir id del espacio
-#     # mostrar en url el nombre del espacio
-#     return render(request, 'reserva/disponibilidad.html')
+def disponibilidad(request,id):
+    espacio = get_object_or_404(Espacio, id = id)
+    datos = {
+    # 'artista' : artista,
+        'espacio' : espacio
+    }
+    # en argumento, pedir id del espacio
+    # mostrar en url el nombre del espacio
+    return render(request, 'reserva/disponibilidad.html', datos)
 

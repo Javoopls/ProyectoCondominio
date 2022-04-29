@@ -13,3 +13,13 @@ function mostrarSaludo(){
     document.getElementById('saludo').innerHTML = texto;
 }
 
+$(function(){
+
+    $(".dropdown-menu li a").click(function(){
+
+      $(".btn:first-child").text($(this).text());
+      $(".btn:first-child").val($(this).text());
+
+   });
+
+});

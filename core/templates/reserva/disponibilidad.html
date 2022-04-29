@@ -15,6 +15,28 @@
     </div>
 </div>
 
+<div style="color: cyan;">
+  <h1>{{espacio.nombre}}</h1>
+<h1>{{espacio.descripcion}}</h1>
+</div>
+
+{% if espacio.nombre == 'Quincho' %}
+<div class="card">
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Seleccione Horario
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <li><a class="dropdown-item" href="#">12-17 hrs</a></li>
+      <li><a class="dropdown-item" href="#">17-24 hrs</a></li>
+    </ul>
+  </div>
+</div>
+
+{% endif %}
+
+
+
 <!-- contenido dinamico, segun tipo de espacio -->
 
 {% endblock %}

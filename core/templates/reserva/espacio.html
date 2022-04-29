@@ -42,7 +42,10 @@
             <h5>Temporada: &#10008;</h5>
           {% endif %}
           </div>
-          <div><a href="#" class="btn btn-dark">Go somewhere</a></div>
+          <div class="text-center">
+            <a class="btn btn-dark" type="submit" href="{% url 'disponibilidad' i.id %}">Reservar</a>
+            <br><br><br>
+          </div>
           
         </div>
       </div>
