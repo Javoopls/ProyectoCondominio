@@ -2,7 +2,7 @@
 from django.urls import path
 from .views import home,\
     login_success, user,\
-        espacios, disponibilidad
+        espacios#, disponibilidad
 
 # Urls del Core
 
@@ -16,6 +16,6 @@ urlpatterns = [
 
     # Reservas
     path('espacios/', espacios, name="espacios"),
-    path('disponibilidad/', disponibilidad, name="disponibilidad"),
+    # path('disponibilidad/', disponibilidad, name="disponibilidad"),
 
 ]

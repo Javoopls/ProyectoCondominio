@@ -1,6 +1,7 @@
 {% extends 'core/base.html' %}
 {% load static %}
 {% load bootstrap4 %}
+{% load humanize %}
 
 {% block docname%}
 <title>Reserva</title>
@@ -16,55 +17,43 @@
 </div>
 
 
-<div class="cards text-center">
+<div class="cards text-justify">
   <div class="row">
 
-    <div class="col zoom">
+    {% for i in espacios %}
+      <div class="col zoom">
         <div class="card" style="width: 18rem;">
-            <img src="{% static 'core/img/piscina.jpg' %}" class="card-img-top shadow" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Piscina</h5>
-              <hr>
-              <a href="{% url 'disponibilidad' %}" class="btn btn-info shadow-sm">Ver disponibilidad</a>
-            </div>
-        </div>
-    </div>
+          <img src="{{i.imagen.url}}" alt="{{i.nombre}}">
+          <div class="card-body">
+            <h3 class="card-title">{{i.nombre}}</h3>
+          </div>
+          <div class="card-body">
+          <p>{{i.descripcion}}</p>
+          <h5>Aforo: {{i.aforo}}</h5>
 
-    <div class="col zoom">
-        <div class="card" style="width: 18rem;">
-            <img src="{% static 'core/img/quincho3.png' %}" class="card-img-top shadow" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Quincho</h5>
-              <hr>
-              <a href="{% url 'disponibilidad' %}" class="btn btn-info shadow-sm">Ver disponibilidad</a>
-            </div>
+          {% if i.precio == 0 %}
+            <h5>Precio: <span style="text-decoration: underline 5pt yellow;">Gratis</span></h5>
+          {% else %}
+            <h5>Precio: <span style="text-decoration: underline 5pt yellow;">${{i.precio | intcomma}}</span></h5>
+          {% endif %}
+          {% if i.temporada == True %}
+            <h5>Temporada: 	&#x2714;</h5>
+          {% else %}
+            <h5>Temporada: &#10008;</h5>
+          {% endif %}
+          </div>
+          <div><a href="#" class="btn btn-dark">Go somewhere</a></div>
+          
         </div>
-    </div>
-
-    <div class="col zoom">
-        <div class="card" style="width: 18rem;">
-            <img src="{% static 'core/img/multicancha2.jpg' %}" class="card-img-top shadow" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Multicancha</h5>
-              <hr>
-              <a href="{% url 'disponibilidad' %}" class="btn btn-info shadow-sm">Ver disponibilidad</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="col zoom">
-        <div class="card" style="width: 18rem;">
-            <img src="{% static 'core/img/sala_evento.jpg' %}" class="card-img-top shadow" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Sala de Eventos</h5>
-              <hr>
-              <a href="{% url 'disponibilidad' %}" class="btn btn-info shadow-sm">Ver disponibilidad</a>
-            </div>
-        </div>
-    </div>
+      </div>
+    {% endfor %}
 
   </div>
+  
 </div>
+
+
+
 
 
 {% endblock %}

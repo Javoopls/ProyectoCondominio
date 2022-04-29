@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
 from core.decorators import residente_only
+from core.models import Espacio
 
 # Create your views here.
 
@@ -22,9 +23,15 @@ def user(request):
 
 # Reservas
 def espacios(request):
-    return render(request, 'reserva/espacio.html')
-def disponibilidad(request):
-    # en argumento, pedir id del espacio
-    # mostrar en url el nombre del espacio
-    return render(request, 'reserva/disponibilidad.html')
+    if request.method == 'GET':
+        espacios = Espacio.objects.all()
+    datos = {
+        'espacios' : espacios
+    }
+    return render(request, 'reserva/espacio.html', datos)
+
+# def disponibilidad(request):
+#     # en argumento, pedir id del espacio
+#     # mostrar en url el nombre del espacio
+#     return render(request, 'reserva/disponibilidad.html')
 

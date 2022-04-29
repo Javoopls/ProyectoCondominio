@@ -1,0 +1,9 @@
+# Acá van las dependencias
+
+django == 3.1.2
+
+# bajar para manejar imágenes
+pillow
+
+# Comando para que cargue el archivo de requerimientos
+# pip install -r requirements.txt
