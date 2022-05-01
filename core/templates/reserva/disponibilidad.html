@@ -2,16 +2,28 @@
 {% load static %}
 {% load bootstrap4 %}
 
+{% block importaciones %}
+<script src="{% static 'core/js/func.js' %}"></script>
+
+<script>
+  window.onload = today;
+</script>
+
+{% endblock %}
+{% bootstrap_css %}
+
 {% block docname%}
 <title>Ver disponibilidad</title>
 {% endblock%}
 
 {% block contenido %}
 
-<div class="row">
+  <div class="row w_txt">
     <div class="col title">
-      <h1 class="w_txt title">Reserva tu Espacio</h1>
-      <p class="w_txt">Optimiza tiempos y haz tu reserva en línea</p>
+      <h1 class="title">Reserva tu Espacio</h1>
+      <p>Optimiza tiempos y haz tu reserva en línea</p>
+      <br><br>
+      <h2>Hoy: <span id="t"></span></h2>
     </div>
 </div>
 
@@ -20,8 +32,14 @@
 <h1>{{espacio.descripcion}}</h1>
 </div>
 
+
+
+
+  
+
+
 {% if espacio.nombre == 'Quincho' %}
-<div class="card">
+<!-- <div class="card">
   <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Seleccione Horario
@@ -31,7 +49,8 @@
       <li><a class="dropdown-item" href="#">17-24 hrs</a></li>
     </ul>
   </div>
-</div>
+</div> -->
+
 
 {% endif %}
 

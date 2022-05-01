@@ -3,7 +3,12 @@
 {% load bootstrap4 %}
 
 {% block importaciones %}
-<script src="{% static 'core/js/funciones.js' %}"></script>
+<script src="{% static 'core/js/func.js' %}"></script>
+
+<script>
+  window.onload = mostrarSaludo;
+</script>
+
 {% endblock %}
 {% bootstrap_css %}
 
