@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     # TERCEROS
     'bootstrap4',
     'crispy_forms',
+    'mathfilters',
     # DJANGO
     'django.contrib.admin',
     'django.contrib.auth',

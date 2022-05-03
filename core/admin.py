@@ -1,5 +1,5 @@
 from django.contrib import admin
-from core.models import Espacio, Reserva, Condominio, Residente, GastosComunes
+from core.models import Espacio, Reserva, Condominio, Residente, GastosComunes, ReservasHorario
 
 # Register your models here.
 class ReservaAdmin(admin.ModelAdmin):
@@ -16,4 +16,5 @@ admin.site.register(Espacio)
 admin.site.register(Reserva, ReservaAdmin)
 admin.site.register(Condominio)
 admin.site.register(Residente, ResidenteAdmin)
-admin.site.register(GastosComunes, GcAdmin)
+admin.site.register(GastosComunes, GcAdmin),
+admin.site.register(ReservasHorario)

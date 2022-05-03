@@ -1,5 +1,6 @@
 from random import choices
 from tabnanny import verbose
+from xml.etree.ElementTree import tostring
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
@@ -42,6 +43,22 @@ class Reserva(models.Model):
     def __str__(self):
         return self.usuario.first_name
 
+WEEKDAY_CHOICES = (
+    ('Monday', 'Monday'),
+    ('Tuesday', 'Tuesday'),
+    ('Wednesday', 'Wednesday'),
+    ('Thursday', 'Thursday'),
+    ('Friday', 'Friday'),
+    ('Saturday', 'Saturday'),
+    ('Sunday', 'Sunday')
+)
+class ReservasHorario(models.Model):
+    day = models.CharField(max_length= 9,choices=WEEKDAY_CHOICES, verbose_name='Día')
+    inicio = models.TimeField(verbose_name="Inicio")
+    termino = models.TimeField(verbose_name="Término")
+    def __str__(self):
+        cadena = self.day + ': ' + str(self.inicio) + ' - ' + str(self.termino)
+        return cadena
 
 class Residente(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
@@ -51,13 +68,6 @@ class Residente(models.Model):
 
     def __str__(self):
         return self.user.first_name
-        # if self.user:
-        #     return self.user.first_name
-        # elif self.nro_vivienda:
-        #     return self.nro_vivienda
-        # else:
-        #     return self.username
-
 
 class Condominio(models.Model):
     nro_vivienda = models.IntegerField(verbose_name="Nro de Viviendas")

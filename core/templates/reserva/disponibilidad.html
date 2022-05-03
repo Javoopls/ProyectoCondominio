@@ -1,6 +1,7 @@
 {% extends 'core/base.html' %}
 {% load static %}
 {% load bootstrap4 %}
+{% load mathfilters %}
 
 {% block importaciones %}
 <script src="{% static 'core/js/func.js' %}"></script>
@@ -33,9 +34,83 @@
 </div>
 
 
+{% for h in horarios %}
+<div style="color: yellow;">
+  {% if h.day == 'Monday' %}
+
+  <h1>{{h.day}}</h1>
+  <h1>{{h.inicio}}</h1>
+  <h1>{{h.inicio}}</h1>
+  <h1>{{h.termino}}</h1>
+  <h3>Resta horaria: {{ h.termino.hour|sub:h.inicio.hour }}</h3>
+  <h3>MedioDia: {{ h.inicio.hour|add:2 }}</h3>
+
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">
+      <h3>Monday</h3>
+      <!-- FALTA: poner dia con fecha según today(), segun el weekday calcular fechas previas (min Monday) y futuras (máx Sunday) -->
+      {% if h.day != dia %} <!-- para ocultar horarios si es el dia que ya pasó -->
+        <!-- FALTA: ocultar horarios previos a la hora actual, y mostrar los horarios sgtes -->
+        {% for g in rangoM %}
+          <button type="button" class="btn btn-light">{{g}}</button>
+          <br><br>
+        {% endfor %}
+      {% endif %}
+    </div>
+    <div class="col">
+      <h3>Tuesday</h3>
+      {% if h.day != dia %}
+        {% for g in rangoT %}
+          <button type="button" class="btn btn-light">{{g}}</button>
+          <br><br>
+        {% endfor %}
+      {% endif %}
+    </div> 
+    <div class="col">
+      <h3>Wednesday</h3>
+      {% for g in rangoW %}
+        <button type="button" class="btn btn-light">{{g}}</button>
+        <br><br>
+      {% endfor %}
+    </div>
+    <div class="col">
+      <h3>Thursday</h3>
+      {% for g in rangoTh %}
+        <button type="button" class="btn btn-light">{{g}}</button>
+        <br><br>
+      {% endfor %}
+    </div>
+    <div class="col">
+      <h3>Friday</h3>
+      {% for g in rangoF %}
+        <button type="button" class="btn btn-light">{{g}}</button>
+        <br><br>
+      {% endfor %}
+    </div>
+    <div class="col">
+      <h3>Saturday</h3>
+      {% for g in rangoSa %}
+        <button type="button" class="btn btn-light">{{g}}</button>
+        <br><br>
+      {% endfor %}
+    </div>
+    <div class="col">
+      <h3>Sunday</h3>
+      {% for g in rangoSu %}
+        <button type="button" class="btn btn-light">{{g}}</button>
+        <br><br>
+      {% endfor %}
+    </div>
+    <div class="col"></div>  
+  </div>
 
 
-  
+  {% endif %}
+</div>
+{% endfor %}
+
+ 
 
 
 {% if espacio.nombre == 'Quincho' %}
