@@ -2,6 +2,9 @@
 
 django == 3.1.2
 
+# bootstrap
+djangp-bootstrap4
+
 # bajar para manejar imágenes
 pillow
 

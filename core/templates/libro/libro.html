@@ -1,0 +1,28 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block importaciones %}
+<script src="{% static 'core/js/func.js' %}"></script>
+
+<script>
+  window.onload = mostrarSaludo;
+</script>
+
+{% endblock %}
+{% bootstrap_css %}
+
+{% block docname%}
+<title>User Profile Home</title>
+{% endblock%}
+
+{% block contenido %}
+<!-- ESCRIBIR CODIGO ACA -->
+
+
+<div class="cards text-center">
+  <div class="row">
+
+  </div>
+</div>
+{% endblock %}

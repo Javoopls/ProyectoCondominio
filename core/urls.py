@@ -2,7 +2,8 @@
 from django.urls import path
 from .views import disponibilidad, home,\
     login_success, user,\
-        espacios, disponibilidad
+        espacios, disponibilidad, cart,\
+            conserjeView
 
 # Urls del Core
 
@@ -18,5 +19,9 @@ urlpatterns = [
     path('espacios/', espacios, name="espacios"),
     # path('disponibilidad/', disponibilidad, name="disponibilidad"),
     path('disponibilidad/<id>', disponibilidad, name="disponibilidad"),
+    path('cart/', cart, name="cart"),
+    # path('cart/<hr>', cart, name="cart"),
 
+    # Conserje
+    path('conserjeria/', conserjeView, name="conserjeria")
 ]
