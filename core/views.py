@@ -334,6 +334,7 @@ def cart(request):
 def conserjeView(request):
     return render(request, 'core/userConserje.html')
 
+
 # -------------------------------------------------------------------
 # MODULO: Gastos Comunes
 # -------------------------------------------------------------------

@@ -1,0 +1,140 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% load mathfilters %}
+
+{% block importaciones %}
+<script src="{% static 'core/js/func.js' %}"></script>
+
+<script>
+  window.onload = today;
+</script>
+
+{% endblock %}
+{% bootstrap_css %}
+
+{% block docname%}
+<title>Ver disponibilidad</title>
+{% endblock%}
+
+{% block contenido %}
+
+<div class="row w_txt">
+  <div class="col title">
+    <h1 class="title">Reserva tu Espacio</h1>
+    <p>Optimiza tiempos y haz tu reserva en línea</p>
+  </div>
+</div>
+
+<div>
+  <div class="row">
+    <div class="col">
+
+    </div>
+    <div class="col"></div>
+  </div>
+
+  <br><br>
+
+
+<div class="card">
+  <br>
+  <div class="card-title text-center"><h1>Elige tu horario</h1></div>
+  <hr>
+  <div class="card-body">
+    <div class="row">
+
+      <div class="col-1"></div>
+
+      <div class="col-3">
+        <h3>{{date}}</h3>
+        <br>
+        <h2><strong>{{espacio.nombre}}</strong></h2>
+        <p>{{espacio.descripcion}}</p>
+      </div>
+
+      <div class="col-8">
+        <div class="card-body">
+
+          <div class="row">
+            <div class="col">
+              <!-- 0 -->
+              <h3>Monday</h3>
+              {% for g in rangoM %} 
+                <a class="btn btn-light" href="{% url 'cart' %}">{{g}}</a>
+                <br><br>
+              {% endfor %}
+            </div>
+
+            <div class="col">
+              <!-- 1 -->
+              <h3>Tuesday</h3>
+              {% for g in rangoT %}
+                <a class="btn btn-light" href="{% url 'cart' %}">{{g}}</a>
+                <br><br>
+              {% endfor %}
+            </div>
+
+            <div class="col">
+              <!-- 2 -->
+              <h3>Wednesday</h3>
+              {% for g in rangoW %}
+                <a class="btn btn-light" href="{% url 'cart' %}">{{g}}</a>
+              <br><br>
+              {% endfor %}
+            </div>
+
+            <div class="col">
+              <!-- 3 -->
+              <h3>Thursday</h3>
+              {% for g in rangoTh %}
+                <a class="btn btn-light" href="{% url 'cart' %}">{{g}}</a>
+              <br><br>
+              {% endfor %}
+            </div>
+
+            <div class="col">
+              <!-- 4 -->
+              <h3>Friday</h3>
+              {% for g in rangoF %}
+                <a class="btn btn-light" href="{% url 'cart' %}">{{g}}</a>
+              <br><br>
+              {% endfor %}
+            </div>
+            <div class="col">
+
+              <!-- 5 -->
+              <h3>Saturday</h3>
+              {% for g in rangoSa %}
+                <a class="btn btn-light" href="{% url 'cart' %}">{{g}}</a>
+              <br><br>
+              {% endfor %}
+            </div>
+
+            <div class="col">
+              <!-- 6 -->
+              <h3>Sunday</h3>
+              {% for g in rangoSu %}
+                <a class="btn btn-light" href="{% url 'cart' %}">{{g}}</a>
+              <br><br>
+              {% endfor %}
+            </div>
+            <div class="col"></div>
+            <div class="col-2"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- contenido dinamico, segun tipo de espacio -->
+
+{% endblock %}

@@ -5,6 +5,9 @@ django == 3.1.2
 # bootstrap
 djangp-bootstrap4
 
+# crispy forms
+django-crispy-forms
+
 # bajar para manejar imágenes
 pillow
 
