@@ -1,0 +1,45 @@
+{% extends 'core/main.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<div class="row">
+    <div class="col title">
+      <h1 class="w_txt title">Reserva tu Espacio</h1>
+      <p class="w_txt">Optimiza tiempos y haz tu reserva en línea</p>
+    </div>
+</div>
+
+
+<div class="cards text-justify">
+  <div class="row">
+
+    {% for espacio in espacios %}
+      <div class="col zoom">
+        <div class="card" style="width: 18rem;">
+          <img src="{{espacio.imageURL}}" alt="">
+          <div class="card-body">
+            <h3 class="card-title">{{espacio.nombre}}</h3>
+          </div>
+          <div class="card-body">
+          <p>{{espacio.descripcion}}</p>
+          <h5>Aforo: {{espacio.aforo}}</h5>
+
+          {% if espacio.precio == 0 %}
+            <h5>Precio: <span style="text-decoration: underline 5pt yellow;">Gratis</span></h5>
+          {% else %}
+            <h5>Precio: <span style="text-decoration: underline 5pt yellow;">${{espacio.precio | intcomma}}</span></h5>
+          {% endif %}
+          </div>
+          <div class="text-center">
+            <a class="btn btn-dark" type="submit" href="{% url 'carrito' %}">Reservar</a>
+            <br><br><br>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+
+  </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,23 @@
+{% extends 'core/main.html' %}
+{% load static %}
+
+{% block importaciones %}
+<script src="{% static 'core/js/funciones.js' %}"></script>
+{% endblock %}
+
+{% block docname%}
+<title>User Home</title>
+{% endblock%}
+
+{% block content %}
+<h1 class="title w_txt">Ahora administrar condominios es más fácil</h1>
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col">
+        <p class="cuerpo-home w_txt">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga nemo quia blanditiis delectus temporibus maiores dicta officia explicabo sit voluptatibus? Corporis pariatur, repellat nam ullam nulla aliquam sunt! Dolore, natus!
+        </p>
+    </div>
+    <div class="col-3"></div>
+</div>
+{% endblock content %}
