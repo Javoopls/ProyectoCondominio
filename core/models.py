@@ -45,10 +45,28 @@ class Reserva(models.Model):
     def __str__(self):
         return str(self.id)
 
+    @property
+    def obtener_total_carrito(self):
+        cantreserva = self.cantreserva_set.all()
+        total = sum([espacio.obtener_total for espacio in cantreserva])
+        return total
+
+    @property
+    def obtener_total_espacios(self):
+        cantreserva = self.cantreserva_set.all()
+        total = sum([espacio.cantidad for espacio in cantreserva])
+        return total
+
 class CantReserva(models.Model):
     espacio = models.ForeignKey(Espacio, on_delete=models.SET_NULL, null=True)
     reserva = models.ForeignKey(Reserva, on_delete=models.SET_NULL, null=True)
+    cantidad = models.IntegerField(default=1, null=True, blank=True, editable=False)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def obtener_total(self):
+        total = self.espacio.precio
+        return total
 
 class PagoReserva(models.Model):
     residente = models.ForeignKey(Residente, on_delete=models.CASCADE)

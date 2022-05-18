@@ -23,11 +23,20 @@ def carrito(request):
         espacios = reserva.cantreserva_set.all()
     else:
         espacios = []
-    context = {'espacios':espacios}
+        orden = {'obtener_total_carrito': 0, 'obtener_total_espacios': 0}
+    context = {'espacios':espacios, 'reserva':reserva}
     return render(request, 'core/carrito.html', context)
 
 def pago(request):
-    context = {}
+
+    if request.user.is_authenticated:
+        residente = request.user.residente
+        reserva, created = Reserva.objects.get_or_create(residente=residente, pagada=False)
+        espacios = reserva.cantreserva_set.all()
+    else:
+        espacios = []
+        orden = {'obtener_total_carrito': 0, 'obtener_total_espacios': 0}
+    context = {'espacios':espacios, 'reserva':reserva}
     return render(request, 'core/pago.html', context)
 
 def login_success(request):
@@ -37,6 +46,8 @@ def login_success(request):
         return redirect('user')
 
 @login_required(login_url='login')
+
 @residente_only
+
 def user(request):
     return render(request, 'core/user.html')

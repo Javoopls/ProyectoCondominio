@@ -2,27 +2,14 @@
 {% load static %}
 {% load humanize %}
 {% block content %}
-	<div class="row">
+	<div class="container">
 		<div class="col-lg-12">
 			<div class="box-element">
 				<a  class="btn btn-outline-dark" href="{% url 'user' %}">&#x2190; Volver al Perfil</a>
 				<br>
 				<br>
-				<table class="table">
-					<tr>
-						<th><h5>Cantidades de Reservas: <strong>3</strong></h5></th>
-						<th><h5>Total:<strong> $42</strong></h5></th>
-						<th>
-							<a  style="float:right; margin:5px;" class="btn btn-success" href="{% url 'pago' %}">Pagar</a>
-						</th>
-					</tr>
-				</table>
-			</div>
-
-			<br>
-			<div class="box-element">
 				<div class="cart-row">
-					<div style="flex:2"></div>
+					<div style="flex:2"><strong>Fotografía del Espacio</strong></div>
 					<div style="flex:2"><strong>Reserva</strong></div>
 					<div style="flex:1"><strong>Aforo</strong></div>
 					<div style="flex:1"><strong>Valor</strong></div>
@@ -35,6 +22,18 @@
 					<div style="flex:1"><p>{{espacio.espacio.precio | intcomma}}</p></div>
 				</div>
 				{% endfor %}
+			</div>
+			<br>
+			<div class="box-element">
+				<table class="table">
+					<tr>
+						<th><h5 style="padding-top: 12px;">Cantidades de Reservas: <strong>{{reserva.obtener_total_espacios}}</strong></h5></th>
+						<th style="padding-left: 550px;"><h5 style="padding-top: 12px;">Total: <strong>${{reserva.obtener_total_carrito|intcomma}}</strong></h5></th>
+						<th>
+							<a  style="float:right; margin:5px;" class="btn btn-success" href="{% url 'pago' %}">Pagar</a>
+						</th>
+					</tr>
+				</table>
 			</div>
 		</div>
 	</div>
