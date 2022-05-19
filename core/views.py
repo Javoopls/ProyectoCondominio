@@ -37,7 +37,7 @@ def espacio(request):
         espaciosCarrito = reserva.obtener_total_espacios
     else:
         espacios = []
-        orden = {'obtener_total_carrito': 0, 'obtener_total_espacios': 0}
+        orden = {'obtener_total_carrito': 0, 'obtener_total_espacios': 0, 'reservar': False}
         espaciosCarrito = reserva['obtener_total_espacios']
 
     espacios = Espacio.objects.all()
@@ -55,7 +55,7 @@ def carrito(request):
         espaciosCarrito = reserva.obtener_total_espacios
     else:
         espacios = []
-        orden = {'obtener_total_carrito': 0, 'obtener_total_espacios': 0}
+        orden = {'obtener_total_carrito': 0, 'obtener_total_espacios': 0, 'reservar': False}
         espaciosCarrito = reserva['obtener_total_espacios']
 
     context = {'espacios': espacios, 'reserva': reserva,
@@ -73,7 +73,7 @@ def pago(request):
         espaciosCarrito = reserva.obtener_total_espacios
     else:
         espacios = []
-        orden = {'obtener_total_carrito': 0, 'obtener_total_espacios': 0}
+        orden = {'obtener_total_carrito': 0, 'obtener_total_espacios': 0, 'reservar': False}
         espaciosCarrito = reserva['obtener_total_espacios']
 
     context = {'espacios': espacios, 'reserva': reserva,
@@ -123,6 +123,8 @@ def updateReserva(request):
 
 
 def procesarReserva(request):
+    print('Data:',request.body)
+    return JsonResponse('Pago Completado', safe=False)
     id_reserva = datetime.datetime.now().timestamp()
     data = json.loads(request.body)
 
@@ -140,11 +142,9 @@ def procesarReserva(request):
         if reserva.pagoreserva == True:
             PagoReserva.objects.create(
                 residente = residente,
-                espacio = espacio,
-                address=data['shipping']['address'],
+                reserva = reserva,
+                fe=data['shipping']['address'],
                 city=data['shipping']['city'],
-                state=data['shipping']['state'],
-                zipcode=data['shipping']['zipcode'],
             )
 
     else:

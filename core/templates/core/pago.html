@@ -68,6 +68,7 @@
 </div>
 
 <script type="text/javascript">
+    var reservar = '{{reserva.reservar}}'
     var total = '{{reserva.obtener_total_carrito}}'
 
     if (user != 'AnonymousUser') {
@@ -100,8 +101,14 @@
             'hora': null,
         }
 
-        infoReserva.fecha = form.fecha.value
-        infoReserva.hora = form.hora.value
+        if (reservar != 'False') {
+            infoReserva.fecha = form.fecha.value
+            infoReserva.hora = form.hora.value
+        }
+
+        console.log('Info Reserva:', infoReserva)
+        console.log('Info Usuario', userFormData)
+
 
         var url = "/procesar_reserva/"
         fetch(url, {

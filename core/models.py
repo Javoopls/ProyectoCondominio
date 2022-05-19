@@ -23,6 +23,7 @@ class Espacio(models.Model):
     precio = models.PositiveIntegerField(blank=True, null=True)
     aforo = models.PositiveIntegerField()
     descripcion = models.TextField(max_length=200)
+    reservado = models.BooleanField(default=False, null=True, blank=True)
     imagen = models.ImageField(null=True, blank=True)
 
     def __str__(self):
@@ -44,6 +45,15 @@ class Reserva(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+    @property
+    def reservar(self):
+        reservar = False
+        cantreserva = self.cantreserva_set.all()
+        for i in cantreserva:
+            if i.espacio.reservado == False:
+                reservar = True
+        return reservar
 
     @property
     def obtener_total_carrito(self):
