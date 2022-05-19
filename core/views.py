@@ -20,10 +20,10 @@ def home(request):
     else:
         espacios = []
         orden = {'obtener_total_carrito': 0, 'obtener_total_espacios': 0}
-        espaciosCarrito = reserva['obtener_total_espacios']
+        # espaciosCarrito = reserva['obtener_total_espacios']
 
     espacios = Espacio.objects.all()
-    context = {'espacios': espacios, 'espaciosCarrito': espaciosCarrito}
+    context = {'espacios': espacios}
     return render(request, 'core/home.html', context)
 
 
