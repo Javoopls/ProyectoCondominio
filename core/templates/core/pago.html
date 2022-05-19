@@ -38,7 +38,7 @@
             <div class="box-element hidden" id="payment-info">
                 <small>Paypal Options</small>
                 <div id="paypal-button-container"></div>
-                <button id="make-payment">Realizar Pago</button>
+                <!-- <button id="make-payment">Realizar Pago</button> -->
             </div>
 
         </div>
@@ -68,7 +68,7 @@
     </div>
 </div>
 
-<!-- <script src="https://www.paypal.com/sdk/js?client-id=AZ3X2YJzGcIQa5njUBWoUsdiEcgnN3WKyEnYhMoVnbvJu0ryQZ3T2jwzXR7n4JXBBMMKvSH13vFxM-WO&currency=USD"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AZ3X2YJzGcIQa5njUBWoUsdiEcgnN3WKyEnYhMoVnbvJu0ryQZ3T2jwzXR7n4JXBBMMKvSH13vFxM-WO&currency=USD"></script>
 
 <script>
     var total = '{{reserva.obtener_total_carrito}}'
@@ -104,15 +104,11 @@
 
 
     }).render('#paypal-button-container');
-</script> -->
+</script>
 
 <script type="text/javascript">
     var reservar = '{{reserva.compReserva}}'
-    var total = '{{reserva.obtener_total_carrito}}'
-
-    // if(reservar == 'True'){
-    //     document.getElementById('info-reserva').innerHTML = ''
-    // }
+    // var total = '{{reserva.obtener_total_carrito}}'
 
     if (user != 'AnonymousUser') {
         document.getElementById('user-info').innerHTML = ''
@@ -130,9 +126,9 @@
         document.getElementById('payment-info').classList.remove("hidden");
     })
 
-    document.getElementById('make-payment').addEventListener('click', function (e) {
-        submitFormData()
-    })
+    // document.getElementById('make-payment').addEventListener('click', function (e) {
+    //     submitFormData()
+    // })
 
     function submitFormData() {
         console.log('Botón de pago clickeado')
