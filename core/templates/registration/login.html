@@ -1,0 +1,41 @@
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load crispy_forms_tags %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% bootstrap_css %}
+    
+    {% block docname%}
+    <title>Ingreso al Sistema</title>
+    {% endblock%}
+</head>
+<body>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3">
+                <br><br><br><br>
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h2>Ingresa tus credenciales</h2>
+                        <hr>
+                        <form action="" method="POST">
+
+                            {% csrf_token %}
+
+                            {{ form | crispy }}
+                            
+                            <a href="{% url 'home' %}"> Ir al Home</a>
+                            <input type="submit" value="ingresar" class="btn btn-primary float-right">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

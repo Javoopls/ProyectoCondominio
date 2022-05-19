@@ -1,0 +1,114 @@
+*{
+    padding: 0px;
+}
+
+body{
+    overflow-x: hidden;
+}
+
+body.bg{
+    background-color: #303435;
+}
+
+a{
+    color: #FFF;
+}
+a:hover{
+    color: red;
+}
+
+.title{
+    text-align: center;
+    margin: 0.5em;
+}
+
+div .cuerpo-home{
+    margin:0px;
+    padding:0px;
+    text-align: center;
+}
+
+
+.w_txt{
+    color: #FFF;
+}
+
+header{
+    padding-top: 1em;
+    margin-right: 1em;
+    margin-bottom: 4em;
+}
+
+ul{
+    justify-content: end;
+}
+
+.cuerpo-home{
+    margin: 3em 6em;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #222525;
+    text-align: center;
+    max-height: 10%;
+}
+
+p.pie{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #adadad;
+}
+
+.texto-form {
+    color: black;
+}
+
+#recuerdame .caption{
+    text-align: center;
+    align-items: center;
+}
+
+.reserva {
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px;
+    max-width: 50vw;
+}
+
+.card {
+    margin: 0 auto;
+    float:inline-start;
+    margin-bottom: 10px;
+    border: none;
+}
+
+.cards{
+    padding: 3em;
+}
+
+img:hover{
+    opacity: 0.7;
+}
+
+.zoom{
+    transition: transform .3s;
+    margin: 0 auto;
+}
+
+.zoom:hover{
+    transform: scale(1.05);
+}
+
+
+.space{
+    margin-top: 4em;
+    margin-bottom: 4em;
+    padding-left: 2em;
+    padding-right: 2em;
+}
