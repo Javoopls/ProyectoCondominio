@@ -171,7 +171,8 @@
             console.log('Exito:', data);
             alert('Transacción Completada');
 
-        carrito = {}
+        cart = {}
+        document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
             
         window.location.href = "{% url 'user' %}"
         })
