@@ -1,3 +1,4 @@
+from tkinter.tix import Tree
 from turtle import back
 from django.db import models
 from django.contrib.auth.models import User
@@ -22,7 +23,7 @@ class Conserje(models.Model):
 
 class Espacio(models.Model):
     nombre = models.CharField(max_length=20)
-    precio = models.PositiveIntegerField(blank=True, null=True)
+    precio = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True)
     aforo = models.PositiveIntegerField()
     descripcion = models.TextField(max_length=200)
     reservado = models.BooleanField(default=False, null=True, blank=True)

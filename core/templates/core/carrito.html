@@ -20,7 +20,7 @@
 					<div style="flex:2"><p>{{espacio.espacio.nombre}}</p></div>
 					<div style="flex:1"><p>{{espacio.espacio.aforo}}</p></div>
 					<div style="flex:1">
-						<p class="quantity">{{espacio.espacio.precio | intcomma}}</p>
+						<p class="quantity">${{espacio.espacio.precio | intcomma}}</p>
 						<div class="quantity">
 							<img data-espacio="{{espacio.espacio.id}}" data-action="remove" src="{% static 'images/trash.png' %}" alt="" class="chg-quantity update-carrito">
 						</div>
