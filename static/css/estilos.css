@@ -19,7 +19,7 @@ a:hover{
 
 .title{
     text-align: center;
-    margin: 1em;
+    margin: 0.5em;
 }
 
 div .cuerpo-home{
@@ -85,9 +85,10 @@ p.pie{
     margin: 0 auto;
     float:inline-start;
     margin-bottom: 10px;
+    border: none;
 }
 
-#cards{
+.cards{
     padding: 3em;
 }
 
@@ -110,8 +111,4 @@ img:hover{
     margin-bottom: 4em;
     padding-left: 2em;
     padding-right: 2em;
-}
-
-#card{
-    border: none;
 }
