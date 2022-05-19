@@ -138,14 +138,14 @@ def procesarReserva(request):
         reserva.save()
 
         if reserva.pagoreserva == True:
-        PagoReserva.objects.create(
-            residente = residente,
-            espacio = espacio,
-            address=data['shipping']['address'],
-            city=data['shipping']['city'],
-            state=data['shipping']['state'],
-            zipcode=data['shipping']['zipcode'],
-        )
+            PagoReserva.objects.create(
+                residente = residente,
+                espacio = espacio,
+                address=data['shipping']['address'],
+                city=data['shipping']['city'],
+                state=data['shipping']['state'],
+                zipcode=data['shipping']['zipcode'],
+            )
 
     else:
         print('Usuario no logeado')

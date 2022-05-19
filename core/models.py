@@ -70,9 +70,10 @@ class CantReserva(models.Model):
 
 class PagoReserva(models.Model):
     residente = models.ForeignKey(Residente, on_delete=models.CASCADE)
-    espacio = models.ForeignKey(Espacio, on_delete=models.CASCADE)
-    fecha_pago = models.DateTimeField()
-    id_pago = models.CharField(max_length=100, null=True)
+    reserva = models.ForeignKey(Reserva, on_delete=models.CASCADE, null=True)
+    fecha_reserva = models.DateField(null=True)
+    hora_reserva = models.TimeField(null=True)
+
     
     def __str__(self):
         return self.residente

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # TERCEROS
     'bootstrap4',
     'crispy_forms',
+    'django_extensions',
 
     # DJANGO
     'django.contrib.admin',
