@@ -1,6 +1,5 @@
 {% extends 'core/main.html' %}
 {% load static %}
-{% load humanize %}
 {% block content %}
 <div class="container">
     <div class="row">
@@ -17,15 +16,15 @@
                         </div>
                     </div>
 
-                    <div id="shipping-info">
+                    <div id="info-reserva">
                         <hr>
                         <div class="form-field">
                             <label for="start"><strong>Elige Fecha y Hora de Reserva:</strong></label>
                             <input class="form-control" type="date" name="fecha" min="2022-05-16"
-                                max="2022-05-31">
+                                max="2022-12-31">
                         </div>
                         <div class="form-field">
-                            <input class="form-control" type="time" name="hora" min="10:00" max="24:00">
+                            <input class="form-control" type="time" name="hora" min="10:00" max="05:00">
                         </div>
 
                     </div>
@@ -39,7 +38,7 @@
             <div class="box-element hidden" id="payment-info">
                 <small>Paypal Options</small>
                 <div id="paypal-button-container"></div>
-                <!-- <button id="make-payment">Realizar Pago</button> -->
+                <button id="make-payment">Realizar Pago</button>
             </div>
 
         </div>
@@ -57,19 +56,19 @@
                         <p>{{espacio.espacio.nombre}}</p>
                     </div>
                     <div style="flex:1">
-                        <p>${{espacio.espacio.precio | intcomma}}</p>
+                        <p>${{espacio.espacio.precio|floatformat:2}}</p>
                     </div>
                 </div>
                 {% endfor %}
 
                 <h5>Reservas: {{reserva.obtener_total_espacios}}</h5>
-                <h5>Total: ${{reserva.obtener_total_carrito|intcomma}}</h5>
+                <h5>Total: ${{reserva.obtener_total_carrito|floatformat:2}}</h5>
             </div>
         </div>
     </div>
 </div>
 
-<script src="https://www.paypal.com/sdk/js?client-id=AZ3X2YJzGcIQa5njUBWoUsdiEcgnN3WKyEnYhMoVnbvJu0ryQZ3T2jwzXR7n4JXBBMMKvSH13vFxM-WO&currency=USD"></script>
+<!-- <script src="https://www.paypal.com/sdk/js?client-id=AZ3X2YJzGcIQa5njUBWoUsdiEcgnN3WKyEnYhMoVnbvJu0ryQZ3T2jwzXR7n4JXBBMMKvSH13vFxM-WO&currency=USD"></script>
 
 <script>
     var total = '{{reserva.obtener_total_carrito}}'
@@ -81,7 +80,7 @@
             return actions.order.create({
                 purchase_units: [{
                     amount: {
-                        value: total
+                        value: parseFloat(total).toFixed(2)
                     }
                 }]
             });
@@ -93,7 +92,7 @@
                 // Successful capture! For demo purposes:
                 console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
                 var transaction = orderData.purchase_units[0].payments.captures[0];
-                alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+                submitFormData()
 
                 // Replace the above to show a success message within this page, e.g.
                 // const element = document.getElementById('paypal-button-container');
@@ -105,10 +104,15 @@
 
 
     }).render('#paypal-button-container');
-</script>
+</script> -->
 
 <script type="text/javascript">
-    var reservar = '{{reserva.reservar}}'
+    var reservar = '{{reserva.compReserva}}'
+    var total = '{{reserva.obtener_total_carrito}}'
+
+    // if(reservar == 'True'){
+    //     document.getElementById('info-reserva').innerHTML = ''
+    // }
 
     if (user != 'AnonymousUser') {
         document.getElementById('user-info').innerHTML = ''
@@ -126,9 +130,9 @@
         document.getElementById('payment-info').classList.remove("hidden");
     })
 
-    // document.getElementById('make-payment').addEventListener('click', function (e) {
-    //     submitFormData()
-    // })
+    document.getElementById('make-payment').addEventListener('click', function (e) {
+        submitFormData()
+    })
 
     function submitFormData() {
         console.log('Botón de pago clickeado')

@@ -1,6 +1,5 @@
 {% extends 'core/main.html' %}
 {% load static %}
-{% load humanize %}
 {% block content %}
 	<div class="container">
 		<div class="col-lg-12">
@@ -20,7 +19,7 @@
 					<div style="flex:2"><p>{{espacio.espacio.nombre}}</p></div>
 					<div style="flex:1"><p>{{espacio.espacio.aforo}}</p></div>
 					<div style="flex:1">
-						<p class="quantity">${{espacio.espacio.precio | intcomma}}</p>
+						<p class="quantity">${{espacio.espacio.precio|floatformat:2}}</p>
 						<div class="quantity">
 							<img data-espacio="{{espacio.espacio.id}}" data-action="remove" src="{% static 'images/trash.png' %}" alt="" class="chg-quantity update-carrito">
 						</div>
@@ -33,7 +32,7 @@
 				<table class="table">
 					<tr>
 						<th><h5 style="padding-top: 12px;">Cantidades de Reservas: <strong>{{reserva.obtener_total_espacios}}</strong></h5></th>
-						<th style="padding-left: 550px;"><h5 style="padding-top: 12px;">Total: <strong>${{reserva.obtener_total_carrito|intcomma}}</strong></h5></th>
+						<th style="padding-left: 550px;"><h5 style="padding-top: 12px;">Total: <strong>${{reserva.obtener_total_carrito|floatformat:2}}</strong></h5></th>
 						<th>
 							<a  style="float:right; margin:5px;" class="btn btn-success" href="{% url 'pago' %}">Pagar</a>
 						</th>

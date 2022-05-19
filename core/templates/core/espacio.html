@@ -1,6 +1,5 @@
 {% extends 'core/main.html' %}
 {% load static %}
-{% load humanize %}
 {% block content %}
 
 <div class="row">
@@ -27,7 +26,7 @@
           {% if espacio.precio == 0 %}
             <h5>Precio: <span style="text-decoration: underline 5pt yellow;">Gratis</span></h5>
           {% else %}
-            <h5>Precio: <span style="text-decoration: underline 5pt yellow;">${{espacio.precio | intcomma}}</span></h5>
+            <h5>Precio: <span style="text-decoration: underline 5pt yellow;">${{espacio.precio|floatformat:2}}</span></h5>
           {% endif %}
           </div>
           <div class="text-center">

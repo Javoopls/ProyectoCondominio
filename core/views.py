@@ -109,19 +109,19 @@ def procesarReserva(request):
     else:
         print('Usuario no logeado')
 
-    total = float(data['form']['total'])
+    total = data['form']['total']
     reserva.id_reserva = id_reserva
 
     if total == reserva.obtener_total_carrito:
         reserva.pagada = True
     reserva.save()
 
-    if reserva.reservar == True:
+    if reserva.compReserva == True:
         PagoReserva.objects.create(
             residente = residente,
             reserva = reserva,
-            fecha_reserva=data['reservar']['fecha'],
-            hora_reserva=data['reservar']['hora'],
+            fecha_reserva=data['reserva']['fecha'],
+            hora_reserva=data['reserva']['hora'],
         )
 
     print('Data:',request.body)

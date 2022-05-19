@@ -50,7 +50,7 @@ class Reserva(models.Model):
         return str(self.id)
 
     @property
-    def reservar(self):
+    def compReserva(self):
         reservar = False
         cantreserva = self.cantreserva_set.all()
         for i in cantreserva:
@@ -89,7 +89,7 @@ class PagoReserva(models.Model):
     fecha_creacion = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     
     def __str__(self):
-        return self.fecha_reserva
+        return str(self.residente)
 
 class Condominio(models.Model):
     nro_vivienda = models.IntegerField(verbose_name="Nro de Viviendas")
