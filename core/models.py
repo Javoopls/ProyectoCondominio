@@ -1,8 +1,10 @@
+from turtle import back
 from django.db import models
 from django.contrib.auth.models import User
 
 class Residente(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100, null=True)
     vivienda = models.PositiveIntegerField()
     rut = models.CharField(max_length=20)
     telefono = models.IntegerField()
@@ -79,14 +81,14 @@ class CantReserva(models.Model):
         return total
 
 class PagoReserva(models.Model):
-    residente = models.ForeignKey(Residente, on_delete=models.CASCADE)
+    residente = models.ForeignKey(Residente, on_delete=models.CASCADE, null=True)
     reserva = models.ForeignKey(Reserva, on_delete=models.CASCADE, null=True)
     fecha_reserva = models.DateField(null=True)
     hora_reserva = models.TimeField(null=True)
-
+    fecha_creacion = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     
     def __str__(self):
-        return self.residente
+        return self.fecha_reserva
 
 class Condominio(models.Model):
     nro_vivienda = models.IntegerField(verbose_name="Nro de Viviendas")

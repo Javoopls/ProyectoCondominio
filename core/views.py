@@ -5,40 +5,25 @@ from core.decorators import residente_only
 from .models import *
 import json
 import datetime
+from . utils import carritoData
 
 # Create your views here.
 
 
 def home(request):
 
-    if request.user.is_authenticated:
-        residente = request.user.residente
-        reserva, created = Reserva.objects.get_or_create(
-            residente=residente, pagada=False)
-        espacios = reserva.cantreserva_set.all()
-        espaciosCarrito = reserva.obtener_total_espacios
-    else:
-        espacios = []
-        orden = {'obtener_total_carrito': 0, 'obtener_total_espacios': 0}
-        # espaciosCarrito = reserva['obtener_total_espacios']
+    data = carritoData(request)
+    espaciosCarrito = data['espaciosCarrito']
 
     espacios = Espacio.objects.all()
-    context = {'espacios': espacios}
+    context = {'espacios': espacios, 'espaciosCarrito': espaciosCarrito}
     return render(request, 'core/home.html', context)
 
 
 def espacio(request):
 
-    if request.user.is_authenticated:
-        residente = request.user.residente
-        reserva, created = Reserva.objects.get_or_create(
-            residente=residente, pagada=False)
-        espacios = reserva.cantreserva_set.all()
-        espaciosCarrito = reserva.obtener_total_espacios
-    else:
-        espacios = []
-        orden = {'obtener_total_carrito': 0, 'obtener_total_espacios': 0, 'reservar': False}
-        espaciosCarrito = reserva['obtener_total_espacios']
+    data = carritoData(request)
+    espaciosCarrito = data['espaciosCarrito']
 
     espacios = Espacio.objects.all()
     context = {'espacios': espacios, 'espaciosCarrito': espaciosCarrito}
@@ -47,34 +32,21 @@ def espacio(request):
 
 def carrito(request):
 
-    if request.user.is_authenticated:
-        residente = request.user.residente
-        reserva, created = Reserva.objects.get_or_create(
-            residente=residente, pagada=False)
-        espacios = reserva.cantreserva_set.all()
-        espaciosCarrito = reserva.obtener_total_espacios
-    else:
-        espacios = []
-        orden = {'obtener_total_carrito': 0, 'obtener_total_espacios': 0, 'reservar': False}
-        espaciosCarrito = reserva['obtener_total_espacios']
+    data = carritoData(request)
+    espacios = data['espacios']
+    reserva = data['reserva']
+    espaciosCarrito = data['espaciosCarrito']
 
     context = {'espacios': espacios, 'reserva': reserva,
                'espaciosCarrito': espaciosCarrito}
     return render(request, 'core/carrito.html', context)
 
-
 def pago(request):
 
-    if request.user.is_authenticated:
-        residente = request.user.residente
-        reserva, created = Reserva.objects.get_or_create(
-            residente=residente, pagada=False)
-        espacios = reserva.cantreserva_set.all()
-        espaciosCarrito = reserva.obtener_total_espacios
-    else:
-        espacios = []
-        orden = {'obtener_total_carrito': 0, 'obtener_total_espacios': 0, 'reservar': False}
-        espaciosCarrito = reserva['obtener_total_espacios']
+    data = carritoData(request)
+    espacios = data['espacios']
+    reserva = data['reserva']
+    espaciosCarrito = data['espaciosCarrito']
 
     context = {'espacios': espacios, 'reserva': reserva,
                'espaciosCarrito': espaciosCarrito}
@@ -91,7 +63,12 @@ def login_success(request):
 @login_required(login_url='login')
 @residente_only
 def user(request):
-    return render(request, 'core/user.html')
+    data = carritoData(request)
+    espaciosCarrito = data['espaciosCarrito']
+
+    espacios = Espacio.objects.all()
+    context = {'espacios': espacios, 'espaciosCarrito': espaciosCarrito}
+    return render(request, 'core/user.html', context)
 
 
 def updateReserva(request):
@@ -121,32 +98,31 @@ def updateReserva(request):
 
     return JsonResponse('Espacio Aniadido', safe=False)
 
-
 def procesarReserva(request):
-    print('Data:',request.body)
-    return JsonResponse('Pago Completado', safe=False)
     id_reserva = datetime.datetime.now().timestamp()
     data = json.loads(request.body)
 
     if request.user.is_authenticated:
         residente = request.user.residente
-        reserva, created = Reserva.objects.get_or_create(
-            residente=residente, pagada=False)
-        total = data['form']['total']
-        reserva.id_reserva = id_reserva
-
-        if total == reserva.obtener_total_carrito:
-            reserva.pagada = True
-        reserva.save()
-
-        if reserva.pagoreserva == True:
-            PagoReserva.objects.create(
-                residente = residente,
-                reserva = reserva,
-                fe=data['shipping']['address'],
-                city=data['shipping']['city'],
-            )
+        reserva, created = Reserva.objects.get_or_create(residente=residente, pagada=False)
 
     else:
         print('Usuario no logeado')
+
+    total = float(data['form']['total'])
+    reserva.id_reserva = id_reserva
+
+    if total == reserva.obtener_total_carrito:
+        reserva.pagada = True
+    reserva.save()
+
+    if reserva.reservar == True:
+        PagoReserva.objects.create(
+            residente = residente,
+            reserva = reserva,
+            fecha_reserva=data['reservar']['fecha'],
+            hora_reserva=data['reservar']['hora'],
+        )
+
+    print('Data:',request.body)
     return JsonResponse('Pago Completado', safe=False)
