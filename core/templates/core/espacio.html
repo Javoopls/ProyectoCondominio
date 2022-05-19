@@ -32,7 +32,8 @@
           {% endif %}
           </div>
           <div class="text-center">
-            <a class="btn btn-dark" type="submit" href="{% url 'carrito' %}">Reservar</a>
+            <!-- <a class="btn btn-dark" type="submit" href="{% url 'carrito' %}">Reservar</a> -->
+            <button data-espacio="{{espacio.id}}" data-action="add" class="btn btn-dark add-btn update-carrito">Reservar</button>
             <br><br><br>
           </div>
         </div>

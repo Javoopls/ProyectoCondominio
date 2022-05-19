@@ -9,4 +9,6 @@ urlpatterns = [
 	path('login_success/', views.login_success, name="login_success"), # Para hacer redirect login dinámico en función del rol
     path('user/', views.user, name="user"), # Page redirect residentes
 	path('espacio/', views.espacio, name="espacio"),
+	path('update_reserva/', views.updateReserva, name="updateReserva"),
+	path('procesar_reserva/', views.procesarReserva, name="procesarReserva"),
 ]

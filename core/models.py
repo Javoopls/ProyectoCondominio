@@ -38,7 +38,7 @@ class Espacio(models.Model):
 
 class Reserva(models.Model):
     residente = models.ForeignKey(Residente, on_delete=models.CASCADE)
-    fecha_reserva = models.DateTimeField(auto_now_add=True)
+    fecha_pago = models.DateTimeField(auto_now_add=True)
     pagada = models.BooleanField(default=False)
     id_reserva = models.CharField(max_length=100, null=True)
 
@@ -60,7 +60,7 @@ class Reserva(models.Model):
 class CantReserva(models.Model):
     espacio = models.ForeignKey(Espacio, on_delete=models.SET_NULL, null=True)
     reserva = models.ForeignKey(Reserva, on_delete=models.SET_NULL, null=True)
-    cantidad = models.IntegerField(default=1, null=True, blank=True, editable=False)
+    cantidad = models.IntegerField(default=0, null=True, blank=True, editable=False)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
 
     @property
