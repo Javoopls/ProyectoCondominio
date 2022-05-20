@@ -11,13 +11,14 @@ from . utils import carritoData
 
 
 def home(request):
+    return render(request, 'core/home.html')
 
-    data = carritoData(request)
-    espaciosCarrito = data['espaciosCarrito']
+    # data = carritoData(request)
+    # espaciosCarrito = data['espaciosCarrito']
 
-    espacios = Espacio.objects.all()
-    context = {'espacios': espacios, 'espaciosCarrito': espaciosCarrito}
-    return render(request, 'core/home.html', context)
+    # espacios = Espacio.objects.all()
+    # context = {'espacios': espacios, 'espaciosCarrito': espaciosCarrito}
+    # return render(request, 'core/home.html', context)
 
 @login_required(login_url='login')
 @residente_only
