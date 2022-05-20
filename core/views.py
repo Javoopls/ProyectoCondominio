@@ -59,6 +59,10 @@ def login_success(request):
     else:
         return redirect('user')
 
+# @login_required(login_url='login')
+# @conserje_only
+# def conserjeView(request):
+#     return render(request, 'core/userConserje.html')
 
 @login_required(login_url='login')
 @residente_only

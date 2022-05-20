@@ -78,7 +78,7 @@ class CantReserva(models.Model):
 
     @property
     def obtener_total(self):
-        total = self.espacio.precio
+        total = self.espacio.precio * self.cantidad
         return total
 
 class PagoReserva(models.Model):
