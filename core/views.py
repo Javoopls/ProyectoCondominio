@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from core.decorators import residente_only
+from core.decorators import residente_only, conserje_only
 from .models import *
 import json
 import datetime
@@ -59,10 +59,10 @@ def login_success(request):
     else:
         return redirect('user')
 
-# @login_required(login_url='login')
-# @conserje_only
-# def conserjeView(request):
-#     return render(request, 'core/userConserje.html')
+@login_required(login_url='login')
+@conserje_only
+def conserjeView(request):
+    return render(request, 'core/userConserje.html')
 
 @login_required(login_url='login')
 @residente_only

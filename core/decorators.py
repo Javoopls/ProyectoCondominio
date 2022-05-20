@@ -34,7 +34,53 @@ def residente_only(view_func):
         if group == 'admin':
             return redirect('/admin/')
 
+        if group == 'conserje':
+            return redirect('conserje')
+
+        if group == 'directiva':
+            return redirect('userDire')
+
         if group == 'residente':
             return view_func(request, *args, **kwargs)
 
+    return wrapper_func
+
+def conserje_only(view_func):
+    def wrapper_func(request, *args, **kwargs):
+
+        group = None
+        if request.user.groups.exists():
+            group = request.user.groups.all()[0].name
+
+        if group == 'admin':
+            return redirect('/admin/')
+
+        if group == 'residente':
+            return redirect('user')
+
+        if group == 'directiva':
+            return redirect('userDire')
+        
+        if group == 'conserje':
+            return view_func(request, *args, **kwargs)
+    return wrapper_func
+
+def directiva_only(view_func):
+    def wrapper_func(request, *args, **kwargs):
+
+        group = None
+        if request.user.groups.exists():
+            group = request.user.groups.all()[0].name
+
+        if group == 'admin':
+            return redirect('/admin/')
+
+        if group == 'residente':
+            return redirect('user')
+
+        if group == 'conserje':
+            return redirect('conserje')
+        
+        if group == 'directiva':
+            return view_func(request, *args, **kwargs)
     return wrapper_func
