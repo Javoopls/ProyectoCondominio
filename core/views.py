@@ -19,7 +19,8 @@ def home(request):
     context = {'espacios': espacios, 'espaciosCarrito': espaciosCarrito}
     return render(request, 'core/home.html', context)
 
-
+@login_required(login_url='login')
+@residente_only
 def espacio(request):
 
     data = carritoData(request)
@@ -29,7 +30,8 @@ def espacio(request):
     context = {'espacios': espacios, 'espaciosCarrito': espaciosCarrito}
     return render(request, 'core/espacio.html', context)
 
-
+@login_required(login_url='login')
+@residente_only
 def carrito(request):
 
     data = carritoData(request)
@@ -41,6 +43,8 @@ def carrito(request):
                'espaciosCarrito': espaciosCarrito}
     return render(request, 'core/carrito.html', context)
 
+@login_required(login_url='login')
+@residente_only
 def pago(request):
 
     data = carritoData(request)
@@ -75,6 +79,8 @@ def user(request):
     return render(request, 'core/user.html', context)
 
 
+@login_required(login_url='login')
+@residente_only
 def updateReserva(request):
     data = json.loads(request.body)
     espacioId = data['espacioId']
@@ -102,6 +108,8 @@ def updateReserva(request):
 
     return JsonResponse('Espacio Aniadido', safe=False)
 
+@login_required(login_url='login')
+@residente_only
 def procesarReserva(request):
     id_reserva = datetime.datetime.now().timestamp()
     data = json.loads(request.body)
