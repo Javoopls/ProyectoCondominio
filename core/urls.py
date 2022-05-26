@@ -11,5 +11,5 @@ urlpatterns = [
 	path('espacio/', views.espacio, name="espacio"),
 	path('update_reserva/', views.updateReserva, name="updateReserva"),
 	path('procesar_reserva/', views.procesarReserva, name="procesarReserva"),
-	# path('conserje/', views.conserjeView, name="conserje"),
+	path('conserje/', views.conserjeView, name="conserje"),
 ]

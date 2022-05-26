@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from core.decorators import residente_only
+from core.decorators import residente_only, conserje_only
 from .models import *
 import json
 import datetime
@@ -11,15 +11,17 @@ from . utils import carritoData
 
 
 def home(request):
+    return render(request, 'core/home.html')
 
-    data = carritoData(request)
-    espaciosCarrito = data['espaciosCarrito']
+    # data = carritoData(request)
+    # espaciosCarrito = data['espaciosCarrito']
 
-    espacios = Espacio.objects.all()
-    context = {'espacios': espacios, 'espaciosCarrito': espaciosCarrito}
-    return render(request, 'core/home.html', context)
+    # espacios = Espacio.objects.all()
+    # context = {'espacios': espacios, 'espaciosCarrito': espaciosCarrito}
+    # return render(request, 'core/home.html', context)
 
-
+@login_required(login_url='login')
+@residente_only
 def espacio(request):
 
     data = carritoData(request)
@@ -29,7 +31,8 @@ def espacio(request):
     context = {'espacios': espacios, 'espaciosCarrito': espaciosCarrito}
     return render(request, 'core/espacio.html', context)
 
-
+@login_required(login_url='login')
+@residente_only
 def carrito(request):
 
     data = carritoData(request)
@@ -41,6 +44,8 @@ def carrito(request):
                'espaciosCarrito': espaciosCarrito}
     return render(request, 'core/carrito.html', context)
 
+@login_required(login_url='login')
+@residente_only
 def pago(request):
 
     data = carritoData(request)
@@ -59,10 +64,10 @@ def login_success(request):
     else:
         return redirect('user')
 
-# @login_required(login_url='login')
-# @conserje_only
-# def conserjeView(request):
-#     return render(request, 'core/userConserje.html')
+@login_required(login_url='login')
+@conserje_only
+def conserjeView(request):
+    return render(request, 'core/userConserje.html')
 
 @login_required(login_url='login')
 @residente_only
@@ -75,6 +80,8 @@ def user(request):
     return render(request, 'core/user.html', context)
 
 
+@login_required(login_url='login')
+@residente_only
 def updateReserva(request):
     data = json.loads(request.body)
     espacioId = data['espacioId']
@@ -102,6 +109,8 @@ def updateReserva(request):
 
     return JsonResponse('Espacio Aniadido', safe=False)
 
+@login_required(login_url='login')
+@residente_only
 def procesarReserva(request):
     id_reserva = datetime.datetime.now().timestamp()
     data = json.loads(request.body)

@@ -46,6 +46,6 @@ Crispy Forms
 ```
 pip install django-crispy-forms
 ```
-Django_extensions
+Django-Extensions
 ```
 pip install django-extensions
