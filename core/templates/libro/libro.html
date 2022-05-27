@@ -1,0 +1,57 @@
+{% extends 'core/main.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% load crispy_forms_tags %}
+
+{% block importaciones %}
+<script src="{% static 'core/js/func.js' %}"></script>
+
+<script>
+  window.onload = mostrarSaludo;
+</script>
+
+{% endblock %}
+{% bootstrap_css %}
+
+{% block docname%}
+<title>LIBRO</title>
+{% endblock%}
+
+{% block content %}
+<!-- ESCRIBIR CODIGO ACA -->
+<div class="row">
+  <div class="col title">
+    <h3 class="w_txt title">libro</h3>
+    <h1 class="w_txt"><span id="saludo"></span>{{user.first_name}}!</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="card">
+    <div class="col"></div>
+    <div class="col">
+      <div class="card-body">
+        <h2>Registra un Evento</h2>
+        <hr>
+        <form action = "" method = "post">
+          {% csrf_token %}
+          {{ form | crispy }}
+          <!-- <label for="evento">Evento</label>
+          <input type="text" name="evento" id=""> -->
+          <input type="submit" value="ingresar" class="btn btn-secondary float-right">
+          <br><br>
+        </form>
+      </div>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
+
+
+
+<div class="cards text-center">
+  <div class="row">
+
+  </div>
+</div>
+{% endblock %}

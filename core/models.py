@@ -104,8 +104,16 @@ class GastosComunes(models.Model):
     def __str__(self):
         return self.condominio
     
-class Libro(models.Model):
+class EventoLibro(models.Model):
     conserje = models.ForeignKey(Conserje, on_delete=models.CASCADE)
+    evento = models.CharField(max_length=500, verbose_name="Evento")
+    fecha = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        verbose_name_plural = "Evento Libro"
+    
+    def __str__(self):
+        return str(self.id)
+    # conserje = models.ForeignKey(Conserje, on_delete=models.CASCADE)
     
 class PagoGC(models.Model):
     residente = models.ForeignKey(Residente, on_delete=models.CASCADE)

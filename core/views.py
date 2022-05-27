@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from core.decorators import residente_only, conserje_only
+from core.forms import EventoForm
 from .models import *
 import json
 import datetime
@@ -67,6 +68,13 @@ def login_success(request):
 @login_required(login_url='login')
 @conserje_only
 def conserjeView(request):
+    if request.user.is_authenticated:
+        conserje = str(request.user.conserje.id)
+        print(conserje)
+        print(type(conserje))
+    datos={
+        'conserje': conserje
+    }
     return render(request, 'core/userConserje.html')
 
 @login_required(login_url='login')
@@ -139,3 +147,28 @@ def procesarReserva(request):
 
     print('Data:',request.body)
     return JsonResponse('Pago Completado', safe=False)
+
+
+@login_required(login_url='login')
+@conserje_only
+def eventoLibroAdd(request,id):
+    if request.user.is_authenticated:
+        conserje = Conserje.objects.get(id=id)
+        print(conserje)
+
+    datos = {
+        'form': EventoForm()
+    }
+
+    if request.method == 'POST':
+        formulario = EventoForm(request.POST)
+        if formulario.is_valid():
+            evento = formulario.save(commit=False)
+            evento.conserje = conserje
+            print(formulario)
+            evento.save()
+            return redirect("/conserje")
+    else:
+        formulario = EventoForm()
+        
+    return render(request, 'libro/libro.html',datos)
