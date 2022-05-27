@@ -1,0 +1,43 @@
+{% extends 'core/main.html' %}
+{% load bootstrap4 %}
+{% load crispy_forms_tags %} 
+
+{% block docname %}
+<title>Condominio|Modificar Evento</title>
+{% endblock %}
+
+{% block importaciones %}
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col title">
+        <h1 class="w_txt"><i class='fa fa-pencil'></i> Editar Evento</h1>
+    </div>
+</div>
+
+<br><br><br>
+
+<div class="row">
+    <div class="card">
+      <div class="col"></div>
+      <div class="col">
+        <div class="card-body">
+          <h2>Guardar Nuevo</h2>
+          <hr><br>
+          <form action = "" method = "post">
+            {% csrf_token %}
+            {{ form | crispy }}
+            <br><br>
+            <button type="submit" class="btn btn-secondary float-right rounded">Guardar Cambios</button>
+            <br><br>
+          </form>
+        </div>
+      </div>
+      <div class="col"></div>
+    </div>
+  </div>
+
+{% endblock %}

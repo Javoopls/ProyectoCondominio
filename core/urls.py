@@ -14,4 +14,7 @@ urlpatterns = [
 	
 	path('conserje/', views.conserjeView, name="conserje"),
     path('conserje/<id>/evento-libro/add/', views.eventoLibroAdd, name="evento"),
+	path('listar/<id>',views.listarEvento, name="listarEvento"),
+	path('eventos/editar/<id>', views.editarEvento, name="editarEvento"),
+	
 ]

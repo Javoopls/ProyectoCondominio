@@ -5,7 +5,7 @@
 
 {% block importaciones %}
 <script src="{% static 'core/js/func.js' %}"></script>
-
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
 <script>
   window.onload = mostrarSaludo;
 </script>
@@ -18,27 +18,30 @@
 {% endblock%}
 
 {% block content %}
-<!-- ESCRIBIR CODIGO ACA -->
+
 <div class="row">
   <div class="col title">
-    <h3 class="w_txt title">libro</h3>
-    <h1 class="w_txt"><span id="saludo"></span>{{user.first_name}}!</h1>
+    <h1 class="w_txt">Registra un Evento</h1>
   </div>
 </div>
+
+<br><br><br><br><br>
 
 <div class="row">
   <div class="card">
     <div class="col"></div>
     <div class="col">
       <div class="card-body">
-        <h2>Registra un Evento</h2>
-        <hr>
+        <h2>Agregar Nuevo <i class='fa fa-plus-circle'></i></h2>
+        <hr><br>
         <form action = "" method = "post">
           {% csrf_token %}
           {{ form | crispy }}
           <!-- <label for="evento">Evento</label>
           <input type="text" name="evento" id=""> -->
-          <input type="submit" value="ingresar" class="btn btn-secondary float-right">
+          <br><br>
+          <a href="{% url 'conserje' %}" class="float-left" style="color: #000;">Regresar al Panel</a>
+          <button type="submit" class="btn btn-secondary float-right rounded">Ingresar</button>
           <br><br>
         </form>
       </div>

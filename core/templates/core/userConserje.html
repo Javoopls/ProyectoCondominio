@@ -33,9 +33,10 @@
       <div class="card" style="width: 18rem;">
         <!-- <img src="{% static 'core/img/icon2.webp' %}" class="card-img-top shadow" alt="..."> -->
         <div class="card-body">
-          <h5 class="card-title">Ir al Libro</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="{% url 'evento' user.conserje.id %}" class="btn btn-secondary">Ir</a>
+          <h5 class="card-title">Eventos del Libro</h5>
+          <p class="card-text">Podrás añadir un nuevo evento o consultar los registros.</p>
+          <a href="{% url 'evento' user.conserje.id %}" class="btn btn-success">Nuevo</a>
+          <a href="{% url 'listarEvento' user.conserje.id %}" class="btn btn-secondary">Listar</a>
         </div>
       </div>
     </div>

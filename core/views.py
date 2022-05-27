@@ -172,3 +172,29 @@ def eventoLibroAdd(request,id):
         formulario = EventoForm()
         
     return render(request, 'libro/libro.html',datos)
+
+
+def listarEvento(request,id):
+    eventos = EventoLibro.objects.filter(conserje=id).order_by('fecha')
+
+    datos = {
+        'eventos': eventos
+    }
+
+    return render(request, 'libro/listar.html', datos)
+
+
+def editarEvento(request,id):
+    evento = EventoLibro.objects.get(id=id)
+
+    datos = {
+        'form': EventoForm(instance=evento)
+    }
+
+    if request.method == 'POST':
+        formulario = EventoForm(data=request.POST, instance=evento)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect("/conserje")
+
+    return render(request, 'libro/editar.html', datos)
