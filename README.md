@@ -49,3 +49,8 @@ pip install django-crispy-forms
 Django-Extensions
 ```
 pip install django-extensions
+```
+Pillow
+```
+pip install pillow
+```
