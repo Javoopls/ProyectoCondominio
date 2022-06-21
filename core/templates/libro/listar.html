@@ -1,0 +1,65 @@
+{% extends 'core/main.html' %}
+{% load bootstrap4 %}
+
+{% block docname %}
+<title>Condominio|Listar Libro</title>
+{% endblock %}
+
+{% block importaciones %}
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col title">
+        <h1 class="w_txt"><i class='fa fa-list-ul'></i> Registros del Libro</h1>
+    </div>
+</div>
+  
+  <br><br><br>
+
+<div class="row">
+    <div class="col"></div>
+    <div class="col-11">
+        <h4><a href="{% url 'conserje' %}" class="goBack float-left"><i class='fa fa-arrow-circle-o-left'></i> Volver atrás</a></h4>
+    </div>
+</div>
+
+  <br><br>
+
+
+
+<div class="row">
+    <div class="col"></div>
+    <div class="col-10">
+        <div class="card">
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Evento</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for evento in eventos %}
+                    <tr>
+                    <th scope="row">{{evento.id}}</th>
+                    <td>{{evento.evento}}</td>
+                    <td>{{evento.fecha}}</td>
+                    <td>
+                        <a href="{% url 'editarEvento' evento.id %}" style="color: blue;">Editar</a>
+                    </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    </div>
+    <div class="col"></div>    
+</div>
+
+
+{% endblock %}

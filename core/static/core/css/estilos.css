@@ -112,3 +112,11 @@ img:hover{
     padding-left: 2em;
     padding-right: 2em;
 }
+
+.goBack{
+    font-weight: 400;
+}
+
+a.goBack:hover{
+    color: rgba(255, 0, 0, 0.712);
+}

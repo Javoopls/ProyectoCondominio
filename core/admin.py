@@ -17,6 +17,9 @@ class ReservaAdmin(admin.ModelAdmin):
 class PagoReservaAdmin(admin.ModelAdmin):
     list_display = ['residente', 'reserva', 'fecha_reserva', 'hora_reserva', 'fecha_creacion']
 
+class EventoAdmin(admin.ModelAdmin):
+    list_display = ['id', 'evento', 'conserje', 'fecha']
+
 admin.site.register(Residente, ResidenteAdmin)
 admin.site.register(Conserje, ConserjeAdmin)
 admin.site.register(Espacio)
@@ -25,5 +28,5 @@ admin.site.register(CantReserva)
 admin.site.register(PagoReserva, PagoReservaAdmin)
 admin.site.register(Condominio)
 admin.site.register(GastosComunes)
-admin.site.register(Libro)
+admin.site.register(EventoLibro, EventoAdmin)
 admin.site.register(PagoGC)
