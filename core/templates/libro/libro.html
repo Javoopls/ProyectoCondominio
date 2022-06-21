@@ -1,0 +1,60 @@
+{% extends 'core/main.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% load crispy_forms_tags %}
+
+{% block importaciones %}
+<script src="{% static 'core/js/func.js' %}"></script>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+<script>
+  window.onload = mostrarSaludo;
+</script>
+
+{% endblock %}
+{% bootstrap_css %}
+
+{% block docname%}
+<title>LIBRO</title>
+{% endblock%}
+
+{% block content %}
+
+<div class="row">
+  <div class="col title">
+    <h1 class="w_txt">Registra un Evento</h1>
+  </div>
+</div>
+
+<br><br><br><br><br>
+
+<div class="row">
+  <div class="card">
+    <div class="col"></div>
+    <div class="col">
+      <div class="card-body">
+        <h2>Agregar Nuevo <i class='fa fa-plus-circle'></i></h2>
+        <hr><br>
+        <form action = "" method = "post">
+          {% csrf_token %}
+          {{ form | crispy }}
+          <!-- <label for="evento">Evento</label>
+          <input type="text" name="evento" id=""> -->
+          <br><br>
+          <a href="{% url 'conserje' %}" class="float-left" style="color: #000;">Regresar al Panel</a>
+          <button type="submit" class="btn btn-secondary float-right rounded">Ingresar</button>
+          <br><br>
+        </form>
+      </div>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
+
+
+
+<div class="cards text-center">
+  <div class="row">
+
+  </div>
+</div>
+{% endblock %}
