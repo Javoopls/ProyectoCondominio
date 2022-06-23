@@ -7,6 +7,7 @@ from .models import *
 import json
 import datetime
 from . utils import carritoData
+from django.contrib import messages #import messages
 
 # Create your views here.
 
@@ -168,6 +169,9 @@ def eventoLibroAdd(request,id):
             print(formulario)
             evento.save()
             return redirect("/conserje")
+        else:
+            messages.warning(request, 'Evento debe ser de más de 5 caracteres')
+
     else:
         formulario = EventoForm()
         
