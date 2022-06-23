@@ -34,16 +34,27 @@
       <div class="card-body">
         <h2>Agregar Nuevo <i class='fa fa-plus-circle'></i></h2>
         <hr><br>
+
         <form action = "" method = "post">
           {% csrf_token %}
           {{ form | crispy }}
           <!-- <label for="evento">Evento</label>
           <input type="text" name="evento" id=""> -->
+
+          {% if messages %}
+            {% for message in messages %}
+              <div {% if message.tags %} class="{{ message.tags }} alert alert-warning" role="alert" {% endif %}>
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %} 
+
           <br><br>
           <a href="{% url 'conserje' %}" class="float-left" style="color: #000;">Regresar al Panel</a>
           <button type="submit" class="btn btn-secondary float-right rounded">Ingresar</button>
           <br><br>
         </form>
+
       </div>
     </div>
     <div class="col"></div>
